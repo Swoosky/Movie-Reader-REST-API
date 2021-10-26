@@ -24,7 +24,7 @@ Route::post('login', 'Api\AuthController@login');
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('course', 'Api\CourseController@index');
     Route::get('course/{id}', 'Api\CourseController@show');
-    Route::get('course', 'Api\CourseController@store');
-    Route::get('course/{id}', 'Api\CourseController@update');
-    Route::get('course/{id}', 'Api\CourseController@destroy');
+    Route::post('course', 'Api\CourseController@store');
+    Route::put('course/{id}', 'Api\CourseController@update');
+    Route::delete('course/{id}', 'Api\CourseController@destroy');
 });
