@@ -22,9 +22,21 @@ Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function() {
+    Route::post('logout', 'Api\AuthController@logout');
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
     Route::get('course', 'Api\CourseController@index');
     Route::get('course/{id}', 'Api\CourseController@show');
     Route::post('course', 'Api\CourseController@store');
     Route::put('course/{id}', 'Api\CourseController@update');
     Route::delete('course/{id}', 'Api\CourseController@destroy');
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('student', 'Api\StudentController@index');
+    Route::get('student/{id}', 'Api\StudentController@show');
+    Route::post('student', 'Api\StudentController@store');
+    Route::put('student/{id}', 'Api\StudentController@update');
+    Route::delete('student/{id}', 'Api\StudentController@destroy');
 });

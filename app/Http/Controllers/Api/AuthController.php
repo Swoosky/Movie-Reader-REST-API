@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Passport\RefreshToken;
+use Laravel\Passport\Token;
 
 class AuthController extends Controller
 {
@@ -54,5 +56,14 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'access_token' => $token
         ]); //return data user dan token dlm json
+    }
+
+    public function logout() {
+        $user = Auth::user()->token();
+        $user->revoke();
+        
+        return response([
+            'message' => 'Logout Success'
+        ], 200);; // modify as per your need
     }
 }
