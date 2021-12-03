@@ -40,3 +40,20 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::put('student/{id}', 'Api\StudentController@update');
     Route::delete('student/{id}', 'Api\StudentController@destroy');
 });
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('user', 'Api\UserController@index');
+    Route::get('user/{id}', 'Api\UserController@show');
+    Route::post('user', 'Api\UserController@store');
+    Route::put('user/{id}', 'Api\UserController@update');
+    Route::delete('user/{id}', 'Api\UserController@destroy');
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('article', 'Api\ArticleController@index');
+    Route::get('article/{author}', 'Api\ArticleController@indexOneUser');   
+    Route::get('article/{id}', 'Api\ArticleController@show');
+    Route::post('article', 'Api\ArticleController@store');
+    Route::put('article/{id}', 'Api\ArticleController@update');
+    Route::delete('article/{id}', 'Api\ArticleController@destroy');
+});
