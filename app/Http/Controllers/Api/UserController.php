@@ -105,7 +105,11 @@ class UserController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            'name' => 'required|max:60',
+            'first_name' => 'required|max:60',
+            'last_name' => 'required|max:60',
+            'img_url' => 'url',
+            'phone_number' => 'max:13',
+            'gender' => 'required',
             'email' => ['required','email:rfc,dns',Rule::unique('users')->ignore($user)],
             'password' => 'required'
         ]); //membuat validasi
@@ -115,10 +119,24 @@ class UserController extends Controller
                 'message' => $validate->errors()
             ], 400); //return error invalid input
         }
+        // first_name
+        // last_name
+        // img_url
+        // username
+        // password
+        // email
+        // phone_number
+        // gender
+        // role
+        // vk
+        // verified
         
-        $user->name = $updateData['name'];
-        $user->email = $updateData['email'];
-        $user->password = $updateData['password'];
+        $user->first_name = $updateData['first_name'];
+        $user->last_name = $updateData['last_name'];
+        $user->img_url = $updateData['img_url'];
+        $user->phone_number = $updateData['phone_number'];
+        $user->gender = $updateData['gender'];
+        $user->role = $updateData['role'];
 
         if($user->save()) {
             return response([
