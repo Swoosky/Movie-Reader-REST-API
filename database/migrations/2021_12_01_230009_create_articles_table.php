@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->String('img_url');
             $table->String('title');
             $table->String('body');
+            $table->String('author');
             $table->timestamps();
         });
     }
