@@ -31,6 +31,7 @@ class AuthController extends Controller
 
         $registrationData['password'] = bcrypt($request->password);
         $registrationData['img_url'] = 'https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png';
+        $registrationData['phone_number'] = '0';
         $user = User::Create($registrationData);
         return response([
             'message' => 'Register Success',
