@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
+Route::get('email/verify/{id}', 'VerificationController@verify')->name('verificationapi.verify'); // Make sure to keep this as your route name
+Route::get('email/resend', 'VerificationController@resend')->name('verificationapi.resend');
+
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('logout', 'Api\AuthController@logout');
 });

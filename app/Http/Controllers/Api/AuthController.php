@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -34,8 +35,11 @@ class AuthController extends Controller
         $registrationData['phone_number'] = '0';
         $registrationData['role'] = 'Default User';
         $user = User::Create($registrationData);
+
+        $user->sendApiEmailVerificationNotification();
+
         return response([
-            'message' => 'Register Success',
+            'message' => 'Register Success, Please Check Email for Verification',
             'user' => $user,
         ], 200);
     }
@@ -56,6 +60,11 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        
+        if($user->email_verified_at == NULL){
+            return response()->json(['message'=> 'Please Verify Email'], 401);  // Cek udah verif apa belom
+        }
+
         $token = $user->createToken('Authentication Token')->accessToken; // generate token
 
         return response([
