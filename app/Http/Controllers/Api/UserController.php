@@ -110,8 +110,7 @@ class UserController extends Controller
             'img_url' => 'url',
             'phone_number' => 'max:13',
             'gender' => 'required',
-            'email' => ['required','email:rfc,dns',Rule::unique('users')->ignore($user)],
-            'password' => 'required'
+            'role' => 'required',
         ]); //membuat validasi
 
         if($validate->fails()) {
