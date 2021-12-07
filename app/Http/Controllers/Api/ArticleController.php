@@ -31,8 +31,9 @@ class ArticleController extends Controller
     
     //method utk tampil semua untuk satu user
     public function indexOneUser($id) {
-        $author = User::where('id', $id)->value('author');
-        $articles = Article::where('author', $author)->get(); //mengambil yang dari author name
+        $first_name = User::where('id', $id)->value('first_name');
+        $last_name = User::where('id', $id)->value('last_name');
+        $articles = Article::where('author', $first_name + $last_name)->get(); //mengambil yang dari author name
         
         if(count($articles) > 0) {
             return response([
