@@ -23,7 +23,7 @@ class ArticleController extends Controller
         }
 
         return response([
-            'message' => 'Empty',
+            'message' => 'Articles are empty',
             'data' => null
         ], 400);
 
@@ -42,7 +42,7 @@ class ArticleController extends Controller
         }
 
         return response([
-            'message' => 'Empty',
+            'message' => 'User articles are empty',
             'data' => null
         ], 400);
 
@@ -84,9 +84,9 @@ class ArticleController extends Controller
 
         $article = Article::create($storeData);
         return response([
-            'message' => 'Add course success!',
+            'message' => 'Add article success!',
             'data' => $article
-        ], 200); //membuat course baru
+        ], 200); //membuat article baru
     }
 
     //method utk menghapus 1
@@ -102,13 +102,13 @@ class ArticleController extends Controller
         
         if($article->delete()) {
             return response([
-                'message' => 'Delete course success!',
+                'message' => 'Delete article success!',
                 'data' => $article
             ], 200); //return tidak ditemukan
         }
 
         return response([
-            'message' => 'Delete course failed',
+            'message' => 'Delete article failed',
             'data' => null
         ],400); //return gagal hapus
     }
