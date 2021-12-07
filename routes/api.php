@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('article', 'Api\ArticleController@index');
-    Route::get('article/author/{author}', 'Api\ArticleController@indexOneUser');
+    Route::get('article/author/{id}', 'Api\ArticleController@indexOneUser');
     Route::get('article/{id}', 'Api\ArticleController@show');
     Route::post('article', 'Api\ArticleController@store');
     Route::put('article/{id}', 'Api\ArticleController@update');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
@@ -29,8 +30,9 @@ class ArticleController extends Controller
     }
     
     //method utk tampil semua untuk satu user
-    public function indexOneUser($name) {
-        $articles = Article::where('author', $name)->get(); //mengambil yang dari author name
+    public function indexOneUser($id) {
+        $author = User::where('id', $id)->get('id');
+        $articles = Article::where('author', $author)->get(); //mengambil yang dari author name
         
         if(count($articles) > 0) {
             return response([
